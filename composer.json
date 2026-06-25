@@ -1,0 +1,49 @@
+{
+  "name": "runapi-ai/imagen-4",
+  "description": "RunAPI Imagen 4 Composer package for PHP applications",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "RunAPI",
+      "email": "contact@runapi.ai"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "runapi-ai/core": "^0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "RunApi\\Imagen4\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "RunApi\\Imagen4\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "0.1.x-dev"
+    }
+  },
+  "minimum-stability": "stable",
+  "homepage": "https://runapi.ai/models/imagen-4",
+  "support": {
+    "source": "https://github.com/runapi-ai/imagen-4-php",
+    "docs": "https://runapi.ai/docs#sdk-imagen-4",
+    "issues": "https://github.com/runapi-ai/imagen-4-php/issues"
+  },
+  "keywords": [
+    "runapi",
+    "runapi-ai",
+    "php",
+    "composer",
+    "sdk",
+    "api",
+    "packagist",
+    "imagen-4",
+    "imagen-4-api"
+  ]
+}
