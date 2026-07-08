@@ -24,8 +24,7 @@ readonly class TextToImage extends TypedConfiguredResource
      *   model: string,
      *   prompt: string,
      *   aspect_ratio?: string,
-     *   callback_url?: string,
-     *   output_count?: int
+     *   callback_url?: string
      * } $params
      */
     public function create(array $params, ?RequestOptions $options = null): TaskCreateResponse
@@ -51,8 +50,7 @@ readonly class TextToImage extends TypedConfiguredResource
      *   model: string,
      *   prompt: string,
      *   aspect_ratio?: string,
-     *   callback_url?: string,
-     *   output_count?: int
+     *   callback_url?: string
      * } $params
      */
     public function run(array $params, ?RequestOptions $options = null): CompletedImageTaskResponse
