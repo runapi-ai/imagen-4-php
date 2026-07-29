@@ -33,7 +33,7 @@
   "homepage": "https://runapi.ai/models/imagen-4",
   "support": {
     "source": "https://github.com/runapi-ai/imagen-4-php",
-    "docs": "https://runapi.ai/docs#sdk-imagen-4",
+    "docs": "https://runapi.ai/docs/resources/sdks",
     "issues": "https://github.com/runapi-ai/imagen-4-php/issues"
   },
   "keywords": [

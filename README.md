@@ -46,8 +46,8 @@ All SDK exceptions inherit from `RunApi\Core\Errors\RunApiException`, including 
 ## Links
 
 - Model page: https://runapi.ai/models/imagen-4
-- SDK docs: https://runapi.ai/docs#sdk-imagen-4
-- Product docs: https://runapi.ai/docs#imagen-4
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/imagen-4/text-to-image
 - Pricing and rate limits: https://runapi.ai/models/imagen-4/imagen-4
 - Full catalog: https://runapi.ai/models
 - GitHub repository: https://github.com/runapi-ai/imagen-4-php
