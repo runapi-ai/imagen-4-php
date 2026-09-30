@@ -10,7 +10,6 @@ use RunApi\Core\RequestOptions;
 use RunApi\Core\Resources\TypedConfiguredResource;
 use RunApi\Imagen4\Models\CompletedImageTaskResponse;
 use RunApi\Imagen4\Models\ImageTaskResponse;
-use RunApi\Imagen4\Types;
 
 /**
  * Generates new images guided by one or more source images combined with a text prompt. Accepts up to 8 source images. Supports output resolution control (1k/2k/4k) and format selection (png/jpg).
@@ -75,10 +74,8 @@ readonly class RemixImage extends TypedConfiguredResource
         return new self(
             $http,
             '/api/v1/imagen_4/remix_image',
-            'imagen-4/remix-image',
             ImageTaskResponse::class,
             CompletedImageTaskResponse::class,
-            Types::REMIX_IMAGE_MODELS,
             'remix-image',
             ImageTaskResponse::class,
             CompletedImageTaskResponse::class,

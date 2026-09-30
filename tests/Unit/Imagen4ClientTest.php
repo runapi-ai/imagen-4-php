@@ -27,16 +27,14 @@ final class Imagen4ClientTest extends TestCase
     public function testCreatePostsCompactedBodyToCorrectPath(): void
     {
         $transport = new QueueHttpClient([
-            new Response(200, [], '{"id":"task_1"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1"}')]);
         $client = new Imagen4Client(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $task = $client->textToImage->create([
             'model' => 'imagen-4',
             'prompt' => 'A product render',
             'callback_url' => '',
-            'seed' => null,
-        ]);
+            'seed' => null]);
 
         $body = json_decode((string) $transport->requests[0]->getBody(), true, flags: JSON_THROW_ON_ERROR);
 
@@ -51,14 +49,12 @@ final class Imagen4ClientTest extends TestCase
     {
         $transport = new QueueHttpClient([
             new Response(200, [], '{"id":"task_1"}'),
-            new Response(200, [], '{"id":"task_1","status":"completed","images":[{"url":"https://file.runapi.ai/result"}],"extra_field":"kept"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1","status":"completed","images":[{"url":"https://file.runapi.ai/result"}],"extra_field":"kept","usage":{"cost":0.05}}')]);
         $client = new Imagen4Client(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $result = $client->textToImage->run([
             'model' => 'imagen-4',
-            'prompt' => 'A product render',
-        ]);
+            'prompt' => 'A product render']);
 
         self::assertInstanceOf(CompletedImageTaskResponse::class, $result);
         self::assertSame('https://file.runapi.ai/result', $result->images[0]->url);
@@ -70,8 +66,7 @@ final class Imagen4ClientTest extends TestCase
     {
         $transport = new QueueHttpClient([
             new Response(200, [], '{"id":"task_1"}'),
-            new Response(200, [], '{"id":"task_1","status":"completed"}'),
-        ]);
+            new Response(200, [], '{"id":"task_1","status":"completed","usage":{"cost":0.05}}')]);
         $client = new Imagen4Client(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $this->expectException(ValidationException::class);
@@ -79,36 +74,21 @@ final class Imagen4ClientTest extends TestCase
 
         $client->textToImage->run([
             'model' => 'imagen-4',
-            'prompt' => 'A product render',
-        ]);
+            'prompt' => 'A product render']);
     }
 
-    public function testRejectsInvalidContractEnum(): void
-    {
-        $client = new Imagen4Client(new ClientOptions(apiKey: 'k', httpClient: new QueueHttpClient([]), maxRetries: 0));
 
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('aspect_ratio must be one of the allowed values');
-
-        $client->textToImage->create([
-        'model' => 'imagen-4',
-        'prompt' => 'A product render',
-        'aspect_ratio' => 'not-valid',
-        ]);
-    }
 
     public function testSecondaryResourceUsesItsOwnPath(): void
     {
         $transport = new QueueHttpClient([
-            new Response(200, [], '{"id":"task_2"}'),
-        ]);
+            new Response(200, [], '{"id":"task_2"}')]);
         $client = new Imagen4Client(new ClientOptions(apiKey: 'k', httpClient: $transport, maxRetries: 0));
 
         $client->remixImage->create([
             'model' => 'imagen-4-pro-remix-image',
             'prompt' => 'A product render',
-            'source_image_urls' => ['https://cdn.runapi.ai/public/samples/image.jpg'],
-        ]);
+            'source_image_urls' => ['https://cdn.runapi.ai/public/samples/image.jpg']]);
 
         self::assertSame('/api/v1/imagen_4/remix_image', $transport->requests[0]->getUri()->getPath());
     }

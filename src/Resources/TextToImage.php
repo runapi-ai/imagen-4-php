@@ -10,7 +10,6 @@ use RunApi\Core\RequestOptions;
 use RunApi\Core\Resources\TypedConfiguredResource;
 use RunApi\Imagen4\Models\CompletedImageTaskResponse;
 use RunApi\Imagen4\Models\ImageTaskResponse;
-use RunApi\Imagen4\Types;
 
 /**
  * Generates images from a text prompt. Three model tiers are available: imagen-4 (standard), imagen-4-fast (lower latency), and imagen-4-ultra (highest quality). Use negative_prompt to steer away from unwanted content.
@@ -69,10 +68,8 @@ readonly class TextToImage extends TypedConfiguredResource
         return new self(
             $http,
             '/api/v1/imagen_4/text_to_image',
-            'imagen-4/text-to-image',
             ImageTaskResponse::class,
             CompletedImageTaskResponse::class,
-            Types::TEXT_TO_IMAGE_MODELS,
             'text-to-image',
             ImageTaskResponse::class,
             CompletedImageTaskResponse::class,
